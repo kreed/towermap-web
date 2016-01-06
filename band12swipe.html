@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='mapbox.js'></script>
+<link href='http://api.tiles.mapbox.com/mapbox.js/v0.6.7/mapbox.css' rel='stylesheet' />
+<style>
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; }
+	body {
+		font:20px/20px 'Helvetica Neue',sans-serif;
+		background:#f2efe9;
+	}
+	#swipe {
+		background:#222;
+		position:absolute;
+		bottom:0;
+		left:0;
+		right:0;
+		z-index:1000;
+		padding:10px;
+		height:30px;
+	}
+	#swipe #handle {
+		position:absolute;
+		height:20px;
+		padding:5px;
+		background:#fff;
+		font-weight:bold;
+		border:1px solid #333;
+		color:blue;
+		cursor:pointer;
+		-webkit-user-select: none;
+	}
+	.map-attribution {
+		bottom: 50px;
+	}
+	#osm1 {
+		position:absolute;
+		left:10px;
+		top:0px;
+		z-index:99;
+	}
+	#osm2 {
+		position:absolute;
+		right:10px;
+		top:0px;
+		z-index:99;
+	}
+</style>
+</head>
+<body>
+<div id='swipe'>
+		<div id='handle'>drag</div>
+</div>
+<div id='map'></div>
+<h1 id='osm1'>no band 12</h1>
+<h1 id='osm2'>with band 12</h1>
+<script>
+	var map = mapbox.map('map');
+
+	map.setZoomRange([0,18])
+	map.addLayer(MM.TemplatedLayer('http://maps.t-mobile.com/TMo_TechLTE_Map/{NZ}/{NX}:{NY}/tile.png'));
+	map.addLayer(MM.TemplatedLayer('http://maps.t-mobile.com/Extra2_Map/{NZ}/{NX}:{NY}/tile.png'));
+	map.addLayer(MM.TemplatedLayer('http://a.tiles.mapbox.com/v4/pdgoodman.2e9b9266/{Z}/{X}/{Y}.png?access_token=pk.eyJ1Ijoia3JlM2QiLCJhIjoiMEpxSWVyQSJ9.6ZjZOcJ0fivmTomvkBKbaw'));
+	map.zoom(6).center({ lat: 40, lon: -75 });
+	map.ui.hash.add();
+
+	var l_parent = map.getLayerAt(1).parent,
+			handle = document.getElementById('handle'),
+			dragging = false;
+
+	handle.onmousedown = function() { dragging = true; return false;}
+	document.onmouseup = function() { dragging = false; }
+	document.onmousemove = function(e) {
+			if (!dragging) return;
+			setDivide(MM.getMousePoint(e, map).x);
+	}
+
+	function setDivide(x) {
+			x = Math.max(0, Math.min(x, map.dimensions.x));
+			handle.style.left = (x - 20) + 'px';
+			l_parent.style.clip = 'rect(0px ' + x + 'px 9999999px 0px)';
+	}
+
+	setDivide(400);
+</script>
+</body>
+</html>

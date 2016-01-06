@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>T-Mobile Tower Map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='//api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.js'></script>
+<link href='//api.tiles.mapbox.com/mapbox-gl-js/v0.12.1/mapbox-gl.css' rel='stylesheet' />
+<script src='tmo.js'></script>
+<style>
+body { margin:0; padding:0; }
+#left, #right {
+	position: absolute;
+	top: 30px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+#range {
+	width: 100%;
+	height: 30px;
+}
+</style>
+</head>
+<body>
+<div id='left'></div>
+<div id='right'></div>
+<input id='range' type='range' min='0' max='1.0' step='any' />
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoia3JlM2QiLCJhIjoieU9KWThOUSJ9.lMOWQzER-r4HQZwX8vIWbw';
+
+for (var i = 0; i < towers.features.length; ++i) {
+	var p = towers.features[i].properties;
+	var icons = ['lattice', 'guyed', 'monopole', 'building', 'water_tower'];
+	var struct = icons.indexOf(p.structure) == -1 ? 'default' : p.structure;
+	p._icon = struct.replace(/_/g, '-') + '-' + (p.band || "unknown").replace(/;/g, '-');
+}
+
+var maps = { left: 'style-nob12.json', right: 'style-b12.json' };
+
+for (var e in maps) {
+	maps[e] = initMap(e, maps[e]);
+}
+syncMaps(maps.left, maps.right);
+
+function copyPosition(a, b) {
+	b.jumpTo({
+		center: a.getCenter(),
+		zoom: a.getZoom(),
+		bearing: a.getBearing(),
+		pitch: a.getPitch()
+	});
+}
+
+function syncMaps(a, b) {
+	function a2b() {
+		b.off('move', b2a);
+		copyPosition(a, b);
+		b.on('move', b2a);
+	}
+	function b2a() {
+		a.off('move', b2a);
+		copyPosition(b, a);
+		a.on('move', b2a);
+	}
+	a.on('move', a2b);
+	b.on('move', b2a);
+}
+
+function initMap(el, style) {
+	var map = new mapboxgl.Map({
+		container: el,
+		style: style,
+		center: [-97.9865, 30.0273],
+		zoom: 8,
+	});
+
+	map.on('style.load', function () {
+		map.addSource("towers", {
+			"type": "geojson",
+			"data": towers
+		});
+
+		map.addLayer({
+			"id": "towers",
+			"interactive": true,
+			"type": "symbol",
+			"source": "towers",
+			"filter": ["!=", "hidden", "yes"],
+			"layout": {
+				"icon-image": "{_icon}",
+				"icon-allow-overlap": true,
+			}
+		});
+	});
+
+	map.on('click', function (e) {
+		map.featuresAt(e.point, {layer: 'towers', radius: 12, includeGeometry: true}, function (err, features) {
+			if (err || !features.length)
+				return;
+
+			var feature = features[0];
+
+			var html = '';
+			for (var p in feature.properties) {
+				if (p[0] == '_') continue;
+				html += '<tr><td>' + p + '</td><td>' + feature.properties[p] + '</td></tr>';
+			}
+
+			new mapboxgl.Popup()
+				.setLngLat(feature.geometry.coordinates)
+				.setHTML('<table>' + html + '</table>')
+				.addTo(map);
+		});
+	});
+
+	map.on('mousemove', function (e) {
+		map.featuresAt(e.point, {layer: 'towers', radius: 12}, function (err, features) {
+			map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+		});
+	});
+
+	return map;
+}
+
+var range = document.getElementById('range');
+
+function clip() {
+	var e = document.getElementById('right');
+	var w = e.offsetWidth * range.value;
+	e.style.clip = 'rect(0px, 20000px, 200000px, ' + w + 'px)';
+}
+
+range['oninput' in range ? 'oninput' : 'onchange'] = clip;
+clip();
+
+</script>
+</body>
+</html>
