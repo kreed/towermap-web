@@ -1,0 +1,450 @@
+{
+  "guyed_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_2": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "building_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "building_2": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "building_4": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "building_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "building_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "default_2": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "building_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "building_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "default_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "default_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "default_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "default_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "default_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "default_4": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "lattice_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "flagpole_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "default_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "flagpole_12": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "flagpole_2": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "flagpole_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "flagpole_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "lattice_4": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "guyed_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "flagpole_4": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "flagpole_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "flagpole_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "building_12": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "guyed_2": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "guyed_12": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "monopole_2": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "guyed_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "guyed_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "guyed_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "guyed_4": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "monopole_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "lattice_2": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "lattice_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_4": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "high_voltage_tower_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "monopole_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "lattice_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "lattice_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "lattice_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 0,
+    "pixelRatio": 1
+  },
+  "water_tower_2": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 24,
+    "pixelRatio": 1
+  },
+  "monopole_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 48,
+    "pixelRatio": 1
+  },
+  "monopole_12": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 72,
+    "pixelRatio": 1
+  },
+  "lattice_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 96,
+    "pixelRatio": 1
+  },
+  "monopole_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 120,
+    "pixelRatio": 1
+  },
+  "monopole_4": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 144,
+    "pixelRatio": 1
+  },
+  "monopole_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 0,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_12": {
+    "width": 24,
+    "height": 24,
+    "x": 24,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_2_12": {
+    "width": 24,
+    "height": 24,
+    "x": 48,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_2_4": {
+    "width": 24,
+    "height": 24,
+    "x": 72,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_2_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 96,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_4": {
+    "width": 24,
+    "height": 24,
+    "x": 120,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_4_12": {
+    "width": 24,
+    "height": 24,
+    "x": 144,
+    "y": 168,
+    "pixelRatio": 1
+  },
+  "water_tower_unknown": {
+    "width": 24,
+    "height": 24,
+    "x": 168,
+    "y": 168,
+    "pixelRatio": 1
+  }
+}
