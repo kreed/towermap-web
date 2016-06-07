@@ -28,13 +28,29 @@ for (var i = 0; i < towers.features.length; ++i) {
 
 var map = new mapboxgl.Map({
 	container: "map",
-	style: 'style.json',
+	style: 'mapbox://styles/kre3d/cip5xsxgc000cbqm9om2m1tr7',
 	center: [-97.9865, 30.0273],
 	zoom: 8,
 });
 map.addControl(new mapboxgl.Navigation());
 
 map.on('style.load', function () {
+	['b12', 'nob12'].forEach(function(layer) {
+		map.addSource(layer, {
+			"tiles":["tiles/1465022073/" + layer + "/{z}/{x}/{y}.png"],
+			"maxzoom": 13,
+			"type": "raster",
+			"tileSize": 256
+		});
+		map.addLayer({
+			"id": layer,
+			"type": "raster",
+			"source": layer,
+			"layout": {},
+			"paint": {}
+		}, "water");
+	});
+
 	map.addSource("towers", {
 		"type": "geojson",
 		"data": towers
