@@ -21,9 +21,9 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoia3JlM2QiLCJhIjoieU9KWThOUSJ9.lMOWQzER-r4HQZwX
 
 for (var i = 0; i < towers.features.length; ++i) {
 	var p = towers.features[i].properties;
-	var icons = ['lattice', 'guyed', 'monopole', 'building', 'water_tower'];
+	var icons = ['lattice', 'guyed', 'monopole', 'building', 'water_tower', 'flagpole', 'high_voltage_tower'];
 	var struct = icons.indexOf(p.structure) == -1 ? 'default' : p.structure;
-	p._icon = struct.replace(/_/g, '-') + '-' + (p.band || "unknown").replace(/;/g, '-');
+	p._icon = 'struct_' + struct + '_' + (p.band || "unknown").replace(/;/g, '_');
 }
 
 var map = new mapboxgl.Map({
@@ -35,12 +35,29 @@ var map = new mapboxgl.Map({
 map.addControl(new mapboxgl.Navigation());
 
 map.on('style.load', function () {
+	map.addSource("towers", {
+		"type": "geojson",
+		"data": towers
+	});
+
+	map.addLayer({
+		"id": "towers",
+		"interactive": true,
+		"type": "symbol",
+		"source": "towers",
+		"filter": ["!=", "hidden", "yes"],
+		"layout": {
+			"icon-image": "{_icon}",
+			"icon-allow-overlap": true,
+		}
+	});
+
 	var range = document.getElementById('range');
 
 	function clip() {
 		var x = range.value * 2;
-		map.getLayer('b12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x - 2, 0, 0, 1])
-		map.getLayer('nob12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0, 1])
+		map.getLayer('b12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x - 2, 0, 0, 1]);
+		map.getLayer('nob12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0, 1]);
 		map._rerender();
 	}
 
@@ -49,29 +66,42 @@ map.on('style.load', function () {
 });
 
 map.on('click', function (e) {
-	map.featuresAt(e.point, {layer: 'towers', radius: 12, includeGeometry: true}, function (err, features) {
-		if (err || !features.length)
-			return;
-
+	var size = 12;
+	var box = [[e.point.x - size, e.point.y - size],
+		[e.point.x + size, e.point.y + size]];
+	var features = map.queryRenderedFeatures(box, {layers: ['towers']});
+	if (features.length) {
 		var feature = features[0];
 
 		var html = '';
-		for (var p in feature.properties) {
-			if (p[0] == '_') continue;
-			html += '<tr><td>' + p + '</td><td>' + feature.properties[p] + '</td></tr>';
+		for (var k in feature.properties) {
+			if (k[0] == '_') continue;
+			var v = feature.properties[k];
+			if (k == 'microwave_uls') {
+				var uls_no = v.split(';');
+				for (var i = 0; i < uls_no.length; ++i) {
+					uls_no[i] = '<a href="http://wireless2.fcc.gov/UlsApp/UlsSearch/license.jsp?licKey=' + uls_no[i] + '">' + uls_no[i] + '</a>';
+				}
+				v = uls_no.join(';');
+			} else if (k == 'tmotowers') {
+				v = '<a href="http://www.t-mobiletowers.com/TowerDetail.aspx?towerid=' + v + '">' + v + '</a>';
+			}
+			html += '<tr><td>' + k + '</td><td>' + v + '</td></tr>';
 		}
 
 		new mapboxgl.Popup()
 			.setLngLat(feature.geometry.coordinates)
 			.setHTML('<table>' + html + '</table>')
 			.addTo(map);
-	});
+	}
 });
 
 map.on('mousemove', function (e) {
-	map.featuresAt(e.point, {layer: 'towers', radius: 12}, function (err, features) {
-		map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-	});
+	var size = 12;
+	var box = [[e.point.x - size, e.point.y - size],
+		[e.point.x + size, e.point.y + size]];
+	var features = map.queryRenderedFeatures(box, {layers: ['towers']});
+	map.getCanvas().style.cursor = features.length ? 'pointer' : '';
 });
 </script>
 </body>

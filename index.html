@@ -23,7 +23,7 @@ for (var i = 0; i < towers.features.length; ++i) {
 	var p = towers.features[i].properties;
 	var icons = ['lattice', 'guyed', 'monopole', 'building', 'water_tower', 'flagpole', 'high_voltage_tower'];
 	var struct = icons.indexOf(p.structure) == -1 ? 'default' : p.structure;
-	p._icon = struct.replace(/_/g, '-') + '-' + (p.band || "unknown").replace(/;/g, '-');
+	p._icon = 'struct_' + struct + '_' + (p.band || "unknown").replace(/;/g, '_');
 }
 
 var map = new mapboxgl.Map({
