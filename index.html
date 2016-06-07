@@ -56,8 +56,8 @@ map.on('style.load', function () {
 
 	function clip() {
 		var x = range.value * 2;
-		map.getLayer('b12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x - 2, 0, 0, 1])
-		map.getLayer('nob12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0, 1])
+		map.getLayer('b12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x - 2, 0, 0, 1]);
+		map.getLayer('nob12').clipMatrix = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0, 1]);
 		map._rerender();
 	}
 
@@ -66,10 +66,11 @@ map.on('style.load', function () {
 });
 
 map.on('click', function (e) {
-	map.featuresAt(e.point, {layer: 'towers', radius: 12, includeGeometry: true}, function (err, features) {
-		if (err || !features.length)
-			return;
-
+	var size = 12;
+	var box = [[e.point.x - size, e.point.y - size],
+		[e.point.x + size, e.point.y + size]];
+	var features = map.queryRenderedFeatures(box, {layers: ['towers']});
+	if (features.length) {
 		var feature = features[0];
 
 		var html = '';
@@ -92,13 +93,15 @@ map.on('click', function (e) {
 			.setLngLat(feature.geometry.coordinates)
 			.setHTML('<table>' + html + '</table>')
 			.addTo(map);
-	});
+	}
 });
 
 map.on('mousemove', function (e) {
-	map.featuresAt(e.point, {layer: 'towers', radius: 12}, function (err, features) {
-		map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
-	});
+	var size = 12;
+	var box = [[e.point.x - size, e.point.y - size],
+		[e.point.x + size, e.point.y + size]];
+	var features = map.queryRenderedFeatures(box, {layers: ['towers']});
+	map.getCanvas().style.cursor = features.length ? 'pointer' : '';
 });
 </script>
 </body>
